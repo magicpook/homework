@@ -1,0 +1,1603 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>二次元世界 - 个人网站</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        :root {
+            --primary-color: #8A70C9;
+            --secondary-color: #B794F6;
+            --accent-color: #6B56A8;
+            --background-color: #1A1D2E;
+            --text-color: #F0E6FF;
+            --card-color: #2A3042;
+            --hover-color: #3A4052;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--background-color);
+            color: var(--text-color);
+            line-height: 1.6;
+            background-image: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI2MCIgaGVpZ2h0PSI2MCIgdmlld0JveD0iMCAwIDYwIDYwIj48ZyBmaWxsPSJub25lIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiPjxnIGZpbGw9IiMyQTMwNDIiIGZpbGwtb3BhY2l0eT0iMC4yIj48cGF0aCBkPSJNMzAgMTVjNS41MjMgMCAxMC00LjQ3NyAxMC0xMHMtNC40NzctMTAtMTAtMTAtMTAgNC40NzctMTAgMTAgNC40NzcgMTAgMTAgMTB6Ii8+PHBhdGggZD0iTTMwIDM1YzUuNTIzIDAgMTAtNC40NzcgMTAtMTBzLTQuNDc3LTEwLTEwLTEwLTEwIDQuNDc3LTEwIDEwIDQuNDc3IDEwIDEwIDEweiIvPjwvZz48L2c+PC9zdmc+');
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* 导航栏 */
+        header {
+            background-color: rgba(26, 29, 46, 0.95);
+            backdrop-filter: blur(10px);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.3);
+        }
+        
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 0;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .logo-img {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 24px;
+            font-weight: bold;
+            box-shadow: 0 0 15px rgba(107, 144, 199, 0.5);
+        }
+        
+        .logo-text {
+            font-size: 24px;
+            font-weight: bold;
+            color: var(--text-color);
+            text-shadow: 0 0 10px rgba(139, 184, 232, 0.5);
+        }
+        
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+        
+        .nav-links a {
+            color: var(--text-color);
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+        
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--secondary-color);
+            transition: width 0.3s ease;
+        }
+        
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+        
+        .nav-links a:hover {
+            color: var(--secondary-color);
+            text-shadow: 0 0 10px rgba(139, 184, 232, 0.5);
+        }
+        
+        /* 移动端菜单 */
+        .menu-toggle {
+            display: none;
+            font-size: 24px;
+            cursor: pointer;
+        }
+        
+        /* 英雄区域 */
+        .hero {
+            padding: 6rem 0;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(107, 144, 199, 0.2), rgba(74, 111, 165, 0.2));
+            z-index: -1;
+        }
+        
+        .hero h1 {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+            color: var(--text-color);
+            text-shadow: 0 0 20px rgba(139, 184, 232, 0.5);
+        }
+        
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            color: var(--text-color);
+            opacity: 0.9;
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 12px 30px;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            text-decoration: none;
+            border-radius: 25px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(107, 144, 199, 0.3);
+        }
+        
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(107, 144, 199, 0.5);
+        }
+        
+        /* 内容区域 */
+        .content {
+            padding: 4rem 0;
+        }
+        
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            color: var(--text-color);
+            position: relative;
+        }
+        
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 3px;
+            background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+        }
+        
+        /* 卡片网格 */
+        .card-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+        
+        .card {
+            background-color: var(--card-color);
+            border-radius: 10px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        }
+        
+        .card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+        }
+        
+        .card-img {
+            width: 100%;
+            height: 200px;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+            color: white;
+        }
+        
+        .card-content {
+            padding: 1.5rem;
+        }
+        
+        .card-title {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--text-color);
+        }
+        
+        .card-text {
+            color: var(--text-color);
+            opacity: 0.8;
+            margin-bottom: 1.5rem;
+        }
+        
+        /* 关于区域 */
+        .about {
+            background-color: rgba(42, 48, 66, 0.5);
+            padding: 4rem 0;
+            margin: 4rem 0;
+        }
+        
+        .about-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+        
+        .about-stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+            width: 100%;
+            max-width: 600px;
+        }
+        
+        .stat-item {
+            background-color: var(--card-color);
+            padding: 1.5rem;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s ease;
+        }
+        
+        .stat-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+        }
+        
+        .stat-value {
+            display: block;
+            font-size: 2rem;
+            font-weight: bold;
+            color: var(--secondary-color);
+            margin-bottom: 0.5rem;
+        }
+        
+        .stat-label {
+            display: block;
+            font-size: 0.9rem;
+            color: var(--text-color);
+            opacity: 0.8;
+        }
+        
+        .about-info {
+            margin-top: 1rem;
+            text-align: left;
+            max-width: 600px;
+            width: 100%;
+            background-color: var(--card-color);
+            padding: 1.5rem;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        }
+        
+        .about-info p {
+            margin-bottom: 0.5rem;
+        }
+        
+        .about-info strong {
+            color: var(--secondary-color);
+        }
+        
+        .about-img {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 4rem;
+            color: white;
+            margin-bottom: 2rem;
+            box-shadow: 0 0 20px rgba(107, 144, 199, 0.5);
+        }
+        
+        /* 番剧列表 */
+        .section-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+        }
+        
+        .action-buttons {
+            display: flex;
+            gap: 1rem;
+        }
+        
+        .add-anime-form {
+            background-color: var(--card-color);
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            margin-top: 2rem;
+        }
+        
+        .add-anime-form h3 {
+            margin-bottom: 1.5rem;
+            color: var(--text-color);
+        }
+        
+        /* 番剧详情页 */
+        .back-btn {
+            margin-bottom: 2rem;
+        }
+        
+        .anime-detail-content {
+            display: flex;
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+        
+        .anime-poster {
+            width: 300px;
+            height: 450px;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 4rem;
+            color: white;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+        }
+        
+        .anime-info {
+            flex: 1;
+        }
+        
+        .anime-title {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            color: var(--text-color);
+        }
+        
+        .anime-meta {
+            display: flex;
+            gap: 2rem;
+            margin-bottom: 2rem;
+            color: var(--text-color);
+            opacity: 0.8;
+        }
+        
+        .anime-description {
+            font-size: 1.1rem;
+            line-height: 1.6;
+            margin-bottom: 2rem;
+            color: var(--text-color);
+        }
+        
+        .anime-actions {
+            display: flex;
+            gap: 1rem;
+        }
+        
+        .edit-form {
+            background-color: var(--card-color);
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        }
+        
+        .edit-form h3 {
+            margin-bottom: 1.5rem;
+            color: var(--text-color);
+        }
+        
+        /* 响应式设计 */
+        @media (max-width: 768px) {
+            .anime-detail-content {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .anime-poster {
+                width: 250px;
+                height: 375px;
+            }
+            
+            .anime-title {
+                font-size: 2rem;
+                text-align: center;
+            }
+            
+            .anime-meta {
+                flex-direction: column;
+                gap: 0.5rem;
+                text-align: center;
+            }
+        }
+        
+        /* 追番列表区域 */
+        .anime-list-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+        
+        .anime-list-item {
+            background-color: var(--card-color);
+            border-radius: 10px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            display: flex;
+            align-items: center;
+            padding: 1.5rem;
+        }
+        
+        .anime-list-item:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+        }
+        
+        .anime-list-img {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            color: white;
+            margin-right: 1.5rem;
+        }
+        
+        .anime-list-info {
+            flex: 1;
+        }
+        
+        .anime-list-title {
+            font-size: 1.3rem;
+            margin-bottom: 0.5rem;
+            color: var(--text-color);
+        }
+        
+        .anime-list-genre {
+            font-size: 0.9rem;
+            color: var(--text-color);
+            opacity: 0.8;
+            margin-bottom: 0.3rem;
+        }
+        
+        .anime-list-rating {
+            font-size: 0.9rem;
+            color: var(--secondary-color);
+            font-weight: bold;
+            margin-bottom: 0.3rem;
+        }
+        
+        .anime-list-status {
+            font-size: 0.9rem;
+            color: var(--text-color);
+            opacity: 0.8;
+        }
+        
+        /* 兴趣爱好区域 */
+        .hobbies-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+        
+        .hobby-card {
+            background-color: var(--card-color);
+            padding: 2rem;
+            border-radius: 10px;
+            text-align: center;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        }
+        
+        .hobby-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+        }
+        
+        .hobby-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+        
+        .hobby-title {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--text-color);
+        }
+        
+        .hobby-description {
+            color: var(--text-color);
+            opacity: 0.8;
+        }
+        
+        /* 作品展示区域 */
+        .works-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+        
+        .work-card {
+            background-color: var(--card-color);
+            border-radius: 10px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        }
+        
+        .work-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+        }
+        
+        .work-img {
+            width: 100%;
+            height: 200px;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 4rem;
+            color: white;
+        }
+        
+        .work-card .card-content {
+            padding: 1.5rem;
+        }
+        
+        .work-title {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--text-color);
+        }
+        
+        .work-description {
+            color: var(--text-color);
+            opacity: 0.8;
+        }
+        
+        /* 留言板区域 */
+        .section-description {
+            text-align: center;
+            margin-bottom: 3rem;
+            font-size: 1.1rem;
+            color: var(--text-color);
+            opacity: 0.8;
+        }
+        
+        .guestbook-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+        }
+        
+        .messages-container {
+            background-color: var(--card-color);
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        }
+        
+        .messages-container h3,
+        .message-form h3 {
+            margin-bottom: 1.5rem;
+            color: var(--text-color);
+        }
+        
+        #messages-list {
+            max-height: 400px;
+            overflow-y: auto;
+        }
+        
+        .message-item {
+            background-color: var(--background-color);
+            padding: 1.5rem;
+            border-radius: 10px;
+            margin-bottom: 1rem;
+            border-left: 4px solid var(--secondary-color);
+        }
+        
+        .message-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+        
+        .message-author {
+            font-weight: bold;
+            color: var(--secondary-color);
+        }
+        
+        .message-date {
+            font-size: 0.8rem;
+            color: var(--text-color);
+            opacity: 0.6;
+        }
+        
+        .message-content {
+            color: var(--text-color);
+            line-height: 1.5;
+        }
+        
+        .message-form {
+            background-color: var(--card-color);
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        }
+        
+        /* 联系区域 */
+        .contact {
+            padding: 4rem 0;
+        }
+        
+        .contact-form {
+            max-width: 600px;
+            margin: 0 auto;
+            background-color: var(--card-color);
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        }
+        
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: var(--text-color);
+        }
+        
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 10px;
+            background-color: var(--background-color);
+            border: 1px solid var(--accent-color);
+            border-radius: 5px;
+            color: var(--text-color);
+            transition: all 0.3s ease;
+        }
+        
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--secondary-color);
+            box-shadow: 0 0 10px rgba(139, 184, 232, 0.3);
+        }
+        
+        .form-group textarea {
+            resize: vertical;
+            min-height: 150px;
+        }
+        
+        /* 页脚 */
+        footer {
+            background-color: var(--card-color);
+            padding: 3rem 0;
+            text-align: center;
+            margin-top: 4rem;
+        }
+        
+        .footer-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 1rem;
+            margin: 1rem 0;
+        }
+        
+        .social-links a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: var(--background-color);
+            color: var(--text-color);
+            transition: all 0.3s ease;
+        }
+        
+        .social-links a:hover {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            transform: translateY(-3px);
+        }
+        
+        /* 响应式设计 */
+        @media (max-width: 768px) {
+            .nav-links {
+                position: fixed;
+                top: 70px;
+                left: 0;
+                width: 100%;
+                background-color: var(--card-color);
+                flex-direction: column;
+                align-items: center;
+                padding: 2rem 0;
+                gap: 1.5rem;
+                transform: translateY(-100%);
+                transition: transform 0.3s ease;
+                box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            }
+            
+            .nav-links.active {
+                transform: translateY(0);
+            }
+            
+            .menu-toggle {
+                display: block;
+            }
+            
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .section-title {
+                font-size: 2rem;
+            }
+        }
+        
+        /* 动画效果 */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .fade-in {
+            animation: fadeIn 0.8s ease forwards;
+        }
+        
+        /* 滚动效果 */
+        .scroll-reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease;
+        }
+        
+        .scroll-reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body>
+    <!-- 导航栏 -->
+    <header>
+        <div class="container navbar">
+            <div class="logo">
+                <div class="logo-img">🌟</div>
+                <div class="logo-text">二次元世界</div>
+            </div>
+            <ul class="nav-links">
+                <li><a href="#home">首页</a></li>
+                <li><a href="#anime">动漫</a></li>
+                <li><a href="#games">游戏</a></li>
+                <li><a href="#about">关于</a></li>
+                <li><a href="#contact">联系</a></li>
+            </ul>
+            <div class="menu-toggle">☰</div>
+        </div>
+    </header>
+    
+    <!-- 英雄区域 -->
+    <section id="home" class="hero">
+        <div class="container">
+            <h1 class="fade-in">欢迎来到二次元世界</h1>
+            <p class="fade-in">探索动漫、游戏和二次元文化的精彩内容</p>
+            <a href="#anime" class="btn fade-in">开始探索</a>
+        </div>
+    </section>
+    
+    <!-- 动漫区域 -->
+    <section id="anime" class="content">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title scroll-reveal">热门番剧</h2>
+                <div class="action-buttons">
+                    <button class="btn refresh-btn">刷新列表</button>
+                    <button class="btn add-anime-btn">添加番剧</button>
+                </div>
+            </div>
+            <div class="card-grid" id="anime-grid">
+                <!-- 番剧卡片将通过JavaScript动态生成 -->
+            </div>
+            <div class="add-anime-form" style="display: none;">
+                <h3>添加新番剧</h3>
+                <form id="add-anime-form">
+                    <div class="form-group">
+                        <label for="add-title">标题</label>
+                        <input type="text" id="add-title" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="add-season">季度</label>
+                        <input type="text" id="add-season">
+                    </div>
+                    <div class="form-group">
+                        <label for="add-episodes">集数</label>
+                        <input type="number" id="add-episodes">
+                    </div>
+                    <div class="form-group">
+                        <label for="add-status">状态</label>
+                        <select id="add-status">
+                            <option value="连载中">连载中</option>
+                            <option value="已完结">已完结</option>
+                            <option value="未开播">未开播</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="add-description">简介</label>
+                        <textarea id="add-description" rows="5"></textarea>
+                    </div>
+                    <button type="submit" class="btn">添加番剧</button>
+                    <button type="button" class="btn cancel-add">取消</button>
+                </form>
+            </div>
+        </div>
+    </section>
+    
+    <!-- 番剧详情页 -->
+    <section id="anime-detail" class="content" style="display: none;">
+        <div class="container">
+            <div class="back-btn"><a href="#anime" class="btn">返回列表</a></div>
+            <div class="anime-detail-content">
+                <div class="anime-poster"></div>
+                <div class="anime-info">
+                    <h2 class="anime-title"></h2>
+                    <div class="anime-meta"></div>
+                    <div class="anime-description"></div>
+                    <div class="anime-actions">
+                        <button class="btn edit-btn">编辑信息</button>
+                    </div>
+                </div>
+            </div>
+            <div class="edit-form" style="display: none;">
+                <h3>编辑番剧信息</h3>
+                <form id="edit-anime-form">
+                    <input type="hidden" id="edit-anime-id">
+                    <div class="form-group">
+                        <label for="edit-title">标题</label>
+                        <input type="text" id="edit-title" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="edit-season">季度</label>
+                        <input type="text" id="edit-season">
+                    </div>
+                    <div class="form-group">
+                        <label for="edit-episodes">集数</label>
+                        <input type="number" id="edit-episodes">
+                    </div>
+                    <div class="form-group">
+                        <label for="edit-status">状态</label>
+                        <select id="edit-status">
+                            <option value="连载中">连载中</option>
+                            <option value="已完结">已完结</option>
+                            <option value="未开播">未开播</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="edit-description">简介</label>
+                        <textarea id="edit-description" rows="5"></textarea>
+                    </div>
+                    <button type="submit" class="btn">保存修改</button>
+                    <button type="button" class="btn cancel-edit">取消</button>
+                </form>
+            </div>
+        </div>
+    </section>
+    
+    <!-- 游戏区域 -->
+    <section id="games" class="content">
+        <div class="container">
+            <h2 class="section-title scroll-reveal">二次元游戏</h2>
+            <div class="card-grid">
+                <div class="card scroll-reveal">
+                    <div class="card-img">🎲</div>
+                    <div class="card-content">
+                        <h3 class="card-title">手游推荐</h3>
+                        <p class="card-text">发现最热门的二次元手机游戏，了解游戏特色和玩法</p>
+                        <a href="#" class="btn">查看详情</a>
+                    </div>
+                </div>
+                <div class="card scroll-reveal">
+                    <div class="card-img">🎮</div>
+                    <div class="card-content">
+                        <h3 class="card-title">主机游戏</h3>
+                        <p class="card-text">探索二次元风格的主机游戏，体验精彩的游戏世界</p>
+                        <a href="#" class="btn">查看详情</a>
+                    </div>
+                </div>
+                <div class="card scroll-reveal">
+                    <div class="card-img">🎯</div>
+                    <div class="card-content">
+                        <h3 class="card-title">游戏攻略</h3>
+                        <p class="card-text">获取游戏攻略、角色培养建议和通关技巧</p>
+                        <a href="#" class="btn">查看详情</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- 关于区域 -->
+    <section id="about" class="about">
+        <div class="container">
+            <h2 class="section-title scroll-reveal">关于我</h2>
+            <div class="about-content scroll-reveal">
+                <div class="about-img">👤</div>
+                <h3>星梦旅人</h3>
+                <p>一个深度二次元文化爱好者。从初中开始接触动漫以来，这个世界就一直陪伴着我成长。我喜欢追番、玩游戏、收集手办，也会尝试画一些同人插画。</p>
+                <p>在这里，我想和大家分享我的收藏、创作和对二次元世界的热爱。希望能在这里认识更多志同道合的朋友，一起聊聊喜欢的作品，分享生活中的美好瞬间！</p>
+                <div class="about-stats">
+                    <div class="stat-item">
+                        <span class="stat-value">0+</span>
+                        <span class="stat-label">追番数量</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-value">0h</span>
+                        <span class="stat-label">游戏时长</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-value">0+</span>
+                        <span class="stat-label">收藏手办</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-value">0</span>
+                        <span class="stat-label">年入坑年限</span>
+                    </div>
+                </div>
+                <div class="about-info">
+                    <p><strong>加入时间：</strong>2016年</p>
+                    <p><strong>所在地：</strong>二次元星球</p>
+                    <p><strong>邮箱：</strong>stardream@anime.world</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- 兴趣爱好区域 -->
+    <section id="hobbies" class="content">
+        <div class="container">
+            <h2 class="section-title scroll-reveal">兴趣爱好</h2>
+            <div class="hobbies-grid">
+                <div class="hobby-card scroll-reveal">
+                    <div class="hobby-icon">🎬</div>
+                    <h3 class="hobby-title">追番</h3>
+                    <p class="hobby-description">热爱各类动漫作品</p>
+                </div>
+                <div class="hobby-card scroll-reveal">
+                    <div class="hobby-icon">🎮</div>
+                    <h3 class="hobby-title">游戏</h3>
+                    <p class="hobby-description">主机/PC/手游玩家</p>
+                </div>
+                <div class="hobby-card scroll-reveal">
+                    <div class="hobby-icon">🎨</div>
+                    <h3 class="hobby-title">绘画</h3>
+                    <p class="hobby-description">喜欢画二次元插画</p>
+                </div>
+                <div class="hobby-card scroll-reveal">
+                    <div class="hobby-icon">🎵</div>
+                    <h3 class="hobby-title">音乐</h3>
+                    <p class="hobby-description">ACG音乐爱好者</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- 追番列表区域 -->
+    <section id="anime-list" class="content">
+        <div class="container">
+            <h2 class="section-title scroll-reveal">我的追番列表</h2>
+            <p class="section-description scroll-reveal">探索我热爱的动漫、游戏和角色，一起进入这个精彩的世界</p>
+            <div class="anime-list-grid">
+                <div class="anime-list-item scroll-reveal">
+                    <div class="anime-list-img">⚔️</div>
+                    <div class="anime-list-info">
+                        <h3 class="anime-list-title">进击的巨人</h3>
+                        <p class="anime-list-genre">热血/悬疑</p>
+                        <p class="anime-list-rating">10</p>
+                        <p class="anime-list-status">已完结</p>
+                    </div>
+                </div>
+                <div class="anime-list-item scroll-reveal">
+                    <div class="anime-list-img">💨</div>
+                    <div class="anime-list-info">
+                        <h3 class="anime-list-title">鬼灭之刃</h3>
+                        <p class="anime-list-genre">热血/奇幻</p>
+                        <p class="anime-list-rating">9</p>
+                        <p class="anime-list-status">连载中</p>
+                    </div>
+                </div>
+                <div class="anime-list-item scroll-reveal">
+                    <div class="anime-list-img">🔮</div>
+                    <div class="anime-list-info">
+                        <h3 class="anime-list-title">咒术回战</h3>
+                        <p class="anime-list-genre">热血/超自然</p>
+                        <p class="anime-list-rating">9</p>
+                        <p class="anime-list-status">连载中</p>
+                    </div>
+                </div>
+                <div class="anime-list-item scroll-reveal">
+                    <div class="anime-list-img">⏰</div>
+                    <div class="anime-list-info">
+                        <h3 class="anime-list-title">Re:从零开始</h3>
+                        <p class="anime-list-genre">奇幻/穿越</p>
+                        <p class="anime-list-rating">10</p>
+                        <p class="anime-list-status">连载中</p>
+                    </div>
+                </div>
+                <div class="anime-list-item scroll-reveal">
+                    <div class="anime-list-img">✉️</div>
+                    <div class="anime-list-info">
+                        <h3 class="anime-list-title">紫罗兰永恒花园</h3>
+                        <p class="anime-list-genre">治愈/剧情</p>
+                        <p class="anime-list-rating">10</p>
+                        <p class="anime-list-status">已完结</p>
+                    </div>
+                </div>
+                <div class="anime-list-item scroll-reveal">
+                    <div class="anime-list-img">🌟</div>
+                    <div class="anime-list-info">
+                        <h3 class="anime-list-title">你的名字</h3>
+                        <p class="anime-list-genre">爱情/奇幻</p>
+                        <p class="anime-list-rating">10</p>
+                        <p class="anime-list-status">剧场版</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- 作品展示区域 -->
+    <section id="works" class="content">
+        <div class="container">
+            <h2 class="section-title scroll-reveal">作品展示</h2>
+            <div class="works-grid">
+                <div class="work-card scroll-reveal">
+                    <div class="work-img">🎨</div>
+                    <h3 class="work-title">绘画作品</h3>
+                    <p class="work-description">我的二次元插画创作</p>
+                </div>
+                <div class="work-card scroll-reveal">
+                    <div class="work-img">✍️</div>
+                    <h3 class="work-title">文章创作</h3>
+                    <p class="work-description">动漫和游戏的心得分享</p>
+                </div>
+                <div class="work-card scroll-reveal">
+                    <div class="work-img">👗</div>
+                    <h3 class="work-title">Cosplay</h3>
+                    <p class="work-description">我的cosplay作品</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- 留言板区域 -->
+    <section id="guestbook" class="content">
+        <div class="container">
+            <h2 class="section-title scroll-reveal">留言板</h2>
+            <p class="section-description scroll-reveal">留下你的足迹，有什么想对我说的？欢迎留言交流，期待认识你！</p>
+            <div class="guestbook-content">
+                <div class="messages-container">
+                    <h3>最新留言</h3>
+                    <div id="messages-list">
+                        <!-- 留言将通过JavaScript动态生成 -->
+                    </div>
+                </div>
+                <div class="message-form">
+                    <h3>添加留言</h3>
+                    <form id="guestbook-form">
+                        <div class="form-group">
+                            <label for="guest-name">昵称</label>
+                            <input type="text" id="guest-name" name="guest-name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="guest-message">留言内容</label>
+                            <textarea id="guest-message" name="guest-message" rows="4" required></textarea>
+                        </div>
+                        <button type="submit" class="btn">提交留言</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- 联系区域 -->
+    <section id="contact" class="contact">
+        <div class="container">
+            <h2 class="section-title scroll-reveal">联系我</h2>
+            <form class="contact-form scroll-reveal">
+                <div class="form-group">
+                    <label for="name">姓名</label>
+                    <input type="text" id="name" name="name" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">邮箱</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+                <div class="form-group">
+                    <label for="message">留言</label>
+                    <textarea id="message" name="message" required></textarea>
+                </div>
+                <button type="submit" class="btn">发送留言</button>
+            </form>
+        </div>
+    </section>
+    
+    <!-- 页脚 -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="logo">
+                    <div class="logo-img">🌟</div>
+                    <div class="logo-text">二次元世界</div>
+                </div>
+                <div class="social-links">
+                    <a href="#"><i>🔗</i></a>
+                    <a href="#"><i>📱</i></a>
+                    <a href="#"><i>📧</i></a>
+                </div>
+                <p>&copy; 2026 二次元世界. 保留所有权利.</p>
+            </div>
+        </div>
+    </footer>
+    
+    <script>
+        // 番剧数据
+        let animeList = [
+            {
+                id: 1,
+                title: "鬼灭之刃 锻刀村篇",
+                season: "2024年4月",
+                episodes: 12,
+                status: "连载中",
+                description: "炭治郎和祢豆子为了变得更强，来到了锻刀村。在这里，他们遇到了新的伙伴，也面临着新的挑战。与此同时，鬼舞辻无惨的势力正在逐渐壮大...",
+                image: "https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=Demon%20Slayer%20Swordsmith%20Village%20Arc%20poster%20with%20Tanjiro%20and%20Nezuko%20in%20traditional%20Japanese%20setting%2C%20anime%20style%2C%20vibrant%20colors&image_size=square_hd"
+            },
+            {
+                id: 2,
+                title: "原神 动画版",
+                season: "2024年7月",
+                episodes: 16,
+                status: "未开播",
+                description: "根据热门游戏《原神》改编的动画，讲述了旅行者在提瓦特大陆的冒险故事。动画将还原游戏中的经典场景和角色，为观众带来全新的视觉体验。",
+                image: "https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=Genshin%20Impact%20anime%20poster%20with%20traveler%20and%20Paimon%20in%20Teyvat%20world%2C%20anime%20style%2C%20fantasy%20setting&image_size=square_hd"
+            },
+            {
+                id: 3,
+                title: "进击的巨人 最终季 Part.3",
+                season: "2023年10月",
+                episodes: 10,
+                status: "已完结",
+                description: "艾伦的计划已经开始实施，人类的命运悬于一线。调查兵团的成员们必须做出最后的抉择，是选择牺牲少数人来拯救更多人，还是坚持自己的信念...",
+                image: "https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=Attack%20on%20Titan%20Final%20Season%20Part%203%20poster%20with%20Eren%20and%20Survey%20Corps%2C%20anime%20style%2C%20dramatic%20scene&image_size=square_hd"
+            },
+            {
+                id: 4,
+                title: "灵能百分百 III",
+                season: "2022年10月",
+                episodes: 12,
+                status: "已完结",
+                description: "龙套的超能力不断增强，他必须学会控制自己的力量。与此同时，新的敌人出现了，他们的目标是利用超能力为所欲为...",
+                image: "https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=Mob%20Psycho%20100%20Season%203%20poster%20with%20Mob%20and%20Reigen%2C%20anime%20style%2C%20psychic%20powers&image_size=square_hd"
+            },
+            {
+                id: 5,
+                title: "间谍过家家 第2季",
+                season: "2023年10月",
+                episodes: 12,
+                status: "已完结",
+                description: "黄昏继续执行任务，而阿尼亚则在学校努力学习。与此同时，约尔的杀手身份也面临着新的挑战。这个伪装的家庭将如何应对各种危机？",
+                image: "https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=Spy%20x%20Family%20Season%202%20poster%20with%20Loid%2C%20Yor%20and%20Anya%2C%20anime%20style%2C%20family%20comedy&image_size=square_hd"
+            },
+            {
+                id: 6,
+                title: "葬送的芙莉莲",
+                season: "2023年10月",
+                episodes: 24,
+                status: "连载中",
+                description: "勇者一行人击败了魔王，世界恢复了和平。但对于长寿的精灵芙莉莲来说，与人类同伴的分别只是时间问题。为了寻找复活同伴的方法，她踏上了新的旅程...",
+                image: "https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=Frieren%20Beyond%20Journey%27s%20End%20poster%20with%20Frieren%20the%20elf%20mage%2C%20anime%20style%2C%20fantasy%20adventure&image_size=square_hd"
+            }
+        ];
+        
+        // 存储番剧数据到localStorage
+        function saveAnimeList() {
+            localStorage.setItem('animeList', JSON.stringify(animeList));
+        }
+        
+        // 从localStorage加载番剧数据
+        function loadAnimeList() {
+            const saved = localStorage.getItem('animeList');
+            if (saved) {
+                animeList = JSON.parse(saved);
+            }
+        }
+        
+        // 生成番剧卡片
+        function generateAnimeCards() {
+            const animeGrid = document.getElementById('anime-grid');
+            animeGrid.innerHTML = '';
+            
+            animeList.forEach(anime => {
+                const card = document.createElement('div');
+                card.className = 'card scroll-reveal';
+                card.innerHTML = `
+                    <div class="card-img">
+                        <img src="${anime.image}" alt="${anime.title}" style="width: 100%; height: 100%; object-fit: cover;">
+                    </div>
+                    <div class="card-content">
+                        <h3 class="card-title">${anime.title}</h3>
+                        <p class="card-text">${anime.season} | ${anime.episodes}集 | ${anime.status}</p>
+                        <a href="#" class="btn view-detail" data-id="${anime.id}">查看详情</a>
+                    </div>
+                `;
+                animeGrid.appendChild(card);
+            });
+            
+            // 添加查看详情事件
+            document.querySelectorAll('.view-detail').forEach(btn => {
+                btn.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const animeId = parseInt(this.getAttribute('data-id'));
+                    showAnimeDetail(animeId);
+                });
+            });
+        }
+        
+        // 显示番剧详情
+        function showAnimeDetail(animeId) {
+            const anime = animeList.find(a => a.id === animeId);
+            if (!anime) return;
+            
+            // 隐藏其他部分，显示详情页
+            document.getElementById('anime').style.display = 'none';
+            document.getElementById('games').style.display = 'none';
+            document.getElementById('about').style.display = 'none';
+            document.getElementById('contact').style.display = 'none';
+            document.getElementById('anime-detail').style.display = 'block';
+            
+            // 填充详情数据
+            document.querySelector('.anime-title').textContent = anime.title;
+            document.querySelector('.anime-meta').innerHTML = `
+                <span>季度: ${anime.season}</span>
+                <span>集数: ${anime.episodes}</span>
+                <span>状态: ${anime.status}</span>
+            `;
+            document.querySelector('.anime-description').textContent = anime.description;
+            
+            // 显示番剧图片
+            const animePoster = document.querySelector('.anime-poster');
+            animePoster.innerHTML = `<img src="${anime.image}" alt="${anime.title}" style="width: 100%; height: 100%; object-fit: cover; border-radius: 10px;">`;
+            
+            // 存储当前查看的番剧ID
+            document.getElementById('edit-anime-id').value = anime.id;
+            
+            // 编辑按钮事件
+            document.querySelector('.edit-btn').addEventListener('click', function() {
+                document.querySelector('.edit-form').style.display = 'block';
+                
+                // 填充编辑表单
+                document.getElementById('edit-title').value = anime.title;
+                document.getElementById('edit-season').value = anime.season;
+                document.getElementById('edit-episodes').value = anime.episodes;
+                document.getElementById('edit-status').value = anime.status;
+                document.getElementById('edit-description').value = anime.description;
+            });
+        }
+        
+        // 返回列表
+        document.querySelector('.back-btn a').addEventListener('click', function(e) {
+            e.preventDefault();
+            
+            // 显示番剧列表，隐藏详情页
+            document.getElementById('anime').style.display = 'block';
+            document.getElementById('games').style.display = 'block';
+            document.getElementById('about').style.display = 'block';
+            document.getElementById('contact').style.display = 'block';
+            document.getElementById('anime-detail').style.display = 'none';
+            
+            // 隐藏编辑表单
+            document.querySelector('.edit-form').style.display = 'none';
+        });
+        
+        // 取消编辑
+        document.querySelector('.cancel-edit').addEventListener('click', function() {
+            document.querySelector('.edit-form').style.display = 'none';
+        });
+        
+        // 保存编辑
+        document.getElementById('edit-anime-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const animeId = parseInt(document.getElementById('edit-anime-id').value);
+            const animeIndex = animeList.findIndex(a => a.id === animeId);
+            
+            if (animeIndex !== -1) {
+                animeList[animeIndex] = {
+                    id: animeId,
+                    title: document.getElementById('edit-title').value,
+                    season: document.getElementById('edit-season').value,
+                    episodes: parseInt(document.getElementById('edit-episodes').value),
+                    status: document.getElementById('edit-status').value,
+                    description: document.getElementById('edit-description').value
+                };
+                
+                // 保存到localStorage
+                saveAnimeList();
+                
+                // 更新详情页
+                showAnimeDetail(animeId);
+                
+                // 隐藏编辑表单
+                document.querySelector('.edit-form').style.display = 'none';
+                
+                // 重新生成番剧卡片
+                generateAnimeCards();
+                
+                alert('番剧信息已更新！');
+            }
+        });
+        
+        // 移动端菜单切换
+        const menuToggle = document.querySelector('.menu-toggle');
+        const navLinks = document.querySelector('.nav-links');
+        
+        menuToggle.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+        });
+        
+        // 平滑滚动
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                const targetElement = document.querySelector(targetId);
+                
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 70,
+                        behavior: 'smooth'
+                    });
+                    
+                    // 关闭移动端菜单
+                    navLinks.classList.remove('active');
+                }
+            });
+        });
+        
+        // 滚动显示效果
+        function handleScrollReveal() {
+            const elements = document.querySelectorAll('.scroll-reveal');
+            
+            elements.forEach(element => {
+                const elementTop = element.getBoundingClientRect().top;
+                const elementVisible = 150;
+                
+                if (elementTop < window.innerHeight - elementVisible) {
+                    element.classList.add('active');
+                }
+            });
+        }
+        
+        window.addEventListener('scroll', handleScrollReveal);
+        
+        // 表单提交
+        document.querySelector('.contact-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // 获取表单数据
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const message = document.getElementById('message').value;
+            
+            // 模拟表单提交
+            alert(`感谢您的留言，${name}！我们会尽快回复您。`);
+            
+            // 重置表单
+            this.reset();
+        });
+        
+        // 卡片悬停效果
+        document.querySelectorAll('.card').forEach(card => {
+            card.addEventListener('mouseenter', function() {
+                this.style.transform = 'translateY(-10px)';
+            });
+            
+            card.addEventListener('mouseleave', function() {
+                this.style.transform = 'translateY(0)';
+            });
+        });
+        
+        // 刷新列表
+        document.querySelector('.refresh-btn').addEventListener('click', function() {
+            loadAnimeList();
+            generateAnimeCards();
+            alert('番剧列表已刷新！');
+        });
+        
+        // 添加番剧
+        document.querySelector('.add-anime-btn').addEventListener('click', function() {
+            document.querySelector('.add-anime-form').style.display = 'block';
+        });
+        
+        // 取消添加
+        document.querySelector('.cancel-add').addEventListener('click', function() {
+            document.querySelector('.add-anime-form').style.display = 'none';
+        });
+        
+        // 保存新番剧
+        document.getElementById('add-anime-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const newAnime = {
+                id: Date.now(), // 使用时间戳作为唯一ID
+                title: document.getElementById('add-title').value,
+                season: document.getElementById('add-season').value,
+                episodes: parseInt(document.getElementById('add-episodes').value),
+                status: document.getElementById('add-status').value,
+                description: document.getElementById('add-description').value
+            };
+            
+            animeList.push(newAnime);
+            
+            // 保存到localStorage
+            saveAnimeList();
+            
+            // 重新生成番剧卡片
+            generateAnimeCards();
+            
+            // 隐藏添加表单
+            document.querySelector('.add-anime-form').style.display = 'none';
+            
+            // 重置表单
+            this.reset();
+            
+            alert('番剧已添加！');
+        });
+        
+        // 留言板功能
+        let messages = [
+            {
+                id: 1,
+                author: '动漫迷小王',
+                content: '你的网站设计得太棒了！二次元风格超级赞，配色也很舒服~',
+                date: '2024-01-20'
+            },
+            {
+                id: 2,
+                author: '星野爱',
+                content: '我也超喜欢雷姆！同好握手🤝 期待看到更多你的作品！',
+                date: '2024-01-18'
+            },
+            {
+                id: 3,
+                author: '游戏玩家A',
+                content: '原神玩家+1，可以一起联机吗？UID: 123456789',
+                date: '2024-01-15'
+            }
+        ];
+        
+        // 存储留言到localStorage
+        function saveMessages() {
+            localStorage.setItem('messages', JSON.stringify(messages));
+        }
+        
+        // 从localStorage加载留言
+        function loadMessages() {
+            const saved = localStorage.getItem('messages');
+            if (saved) {
+                messages = JSON.parse(saved);
+            }
+        }
+        
+        // 生成留言列表
+        function generateMessages() {
+            const messagesList = document.getElementById('messages-list');
+            messagesList.innerHTML = '';
+            
+            messages.forEach(message => {
+                const messageItem = document.createElement('div');
+                messageItem.className = 'message-item';
+                messageItem.innerHTML = `
+                    <div class="message-header">
+                        <span class="message-author">${message.author}</span>
+                        <span class="message-date">${message.date}</span>
+                    </div>
+                    <div class="message-content">${message.content}</div>
+                `;
+                messagesList.appendChild(messageItem);
+            });
+        }
+        
+        // 提交留言
+        document.getElementById('guestbook-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const newMessage = {
+                id: Date.now(),
+                author: document.getElementById('guest-name').value,
+                content: document.getElementById('guest-message').value,
+                date: new Date().toISOString().split('T')[0]
+            };
+            
+            messages.unshift(newMessage); // 添加到列表开头
+            
+            // 保存到localStorage
+            saveMessages();
+            
+            // 重新生成留言列表
+            generateMessages();
+            
+            // 重置表单
+            this.reset();
+            
+            alert('留言已提交！');
+        });
+        
+        // 初始化
+        function init() {
+            loadAnimeList();
+            generateAnimeCards();
+            loadMessages();
+            generateMessages();
+            handleScrollReveal();
+        }
+        
+        // 页面加载完成后初始化
+        window.addEventListener('DOMContentLoaded', init);
+    </script>
+</body>
+</html>
